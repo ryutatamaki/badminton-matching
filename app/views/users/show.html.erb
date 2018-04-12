@@ -4,14 +4,15 @@
       <div class="panel-heading">
         <h3 class="panel-title text-center"><%= @user.name %></h3>
         <ul class="nav nav-tabs nav-justified">
-          <li><%= link_to "フォロー", "#"%></li>
-          <li><%= link_to "フォワー", "#"%></li>
+          <li><%= link_to "フォロー", followings_user_path %></li>
+          <li><%= link_to "フォロワー", followers_user_path %></li>
         </ul>
       </div>
       <div class="panel-body">
         <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
     </div>
+    <%= render 'relationships/follow_button', user: @user %>
   </aside>
   <div class="col-xs-8">
     <ul class="nav nav-tabs nav-justified">
