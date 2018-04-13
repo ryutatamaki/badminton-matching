@@ -20,6 +20,7 @@
               <ul class="dropdown-menu">
                 <li><%= link_to current_user.name, user_path(current_user) %></li>
                 <li role="separator" class="divider"></li>
+                <li><%= link_to "いいね!一覧", favorites_user_path(current_user) %></li>
                 <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
               </ul>
             </li>

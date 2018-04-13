@@ -1,0 +1,31 @@
+<div class="row">
+  <aside class="col-xs-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @user.name %></h3>
+      </div>
+      <div class="panel-body">
+        <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+      </div>
+    </div>
+    <%= render 'relationships/follow_button', user: @user %>
+  </aside>
+  <div class="col-xs-8">
+    <ul class="media-list">
+      <h2><%= @user.name %>さんがいいね!した投稿一覧</h2>
+    <% @microposts.each do |micropost| %>
+      <li class="media">
+        <div class="media-left">
+        </div>
+        <div class="media-body">
+          <div>
+            投稿: <%= micropost.content %><br>
+            投稿者: <%= micropost.user.name %> - <%= micropost.created_at %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  <%= paginate @microposts %>
+  </div>
+</div>
