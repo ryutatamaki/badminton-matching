@@ -18,3 +18,32 @@
   color: white;
   font-weight: bold;
 }
+
+/* チャットレイアウト */
+.chat-box {
+    width: 100%;
+    height: auto;
+    overflow: hidden; /*floatの解除*/
+    margin-bottom: 20px;
+}
+.chat-face {
+    float: left;
+    margin-right: -120px;
+}
+.chat-face img{
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 4px #ddd;
+}
+.chat-area {
+    width: 100%;
+    float: right;
+}
+.chat-hukidashi {
+    display: inline-block; /*コメントの文字数に合わせて可変*/
+    padding: 15px 20px;
+    margin-left: 120px;
+    margin-top: 10px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
