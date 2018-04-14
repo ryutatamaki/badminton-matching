@@ -1,0 +1,24 @@
+<div class="row">
+  <aside class="col-xs-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title text-center"><%= @micropost.content %></h3>
+      </div>
+      <%= form_for(@message) do |f| %>
+        <%= f.hidden_field :micropost_id %>
+        <div class="form-group">
+          <%= f.text_area :comment, rows: 5, class: "form-control" %>
+        </div>
+        <%= f.submit 'コメントする', class: 'btn btn-primary btn-block' %>
+        <% end %>
+    </div>
+  </aside>
+  <div class="col-xs-8">
+    <% @messages.each do |message| %>
+      <ul>
+        <li style="list-style: none"><%= message.user.name %> : <%= message.comment %></li>
+      </ul>
+    <% end %>
+  </div>
+</div>
+

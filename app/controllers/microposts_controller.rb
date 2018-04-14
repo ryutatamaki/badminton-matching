@@ -9,6 +9,12 @@ class MicropostsController < ApplicationController
       @microposts = current_user.microposts.order('created_at DESC').page(params[:page])
     end
   end
+  
+  def show
+    @micropost = Micropost.find(params[:id])
+    @message = @micropost.messages.build
+    @messages = @micropost.messages.where.not(id: nil)
+  end
 
   def create
     @micropost = current_user.microposts.build(micropost_paramas)
@@ -26,6 +32,10 @@ class MicropostsController < ApplicationController
     @micropost.destroy
     flash[:success] = '投稿を削除しました。'
     redirect_back(fallback_location: root_path)
+  end
+  
+  def comments
+    @micropost = Micropost.find(params[:id])
   end
   
   private

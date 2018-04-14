@@ -9,7 +9,7 @@
               <%= link_to micropost.user.name, user_path(micropost.user) %> <span class="text-muted"><%= micropost.created_at %></span>
             </div>
             <div>
-              <p><%= micropost.content %></p>
+              <p><%= link_to micropost.content, micropost %></p>
             </div>
             <%= render 'favorites/favorite_button', micropost: micropost %>
             <div>

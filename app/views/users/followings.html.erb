@@ -2,7 +2,11 @@
   <aside class="col-xs-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= @user.name %></h3>
+        <h3 class="panel-title text-center"><%= @user.name %></h3>
+        <ul class="nav nav-tabs nav-justified">
+          <li><%= link_to "フォロー", followings_user_path %></li>
+          <li><%= link_to "フォロワー", followers_user_path %></li>
+        </ul>
       </div>
       <div class="panel-body">
         <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
