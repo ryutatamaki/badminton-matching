@@ -1,8 +1,10 @@
 <div class="row">
+  <h1 class="text-center">投稿詳細ページ</h1>
+  <br>
   <aside class="col-xs-4">
-    <div class="panel panel-default">
+    <div>
       <div class="panel-heading">
-        <h3 class="panel-title text-center"><%= @micropost.content %></h3>
+        <h3 class="panel-title text-center">投稿者: <%= @micropost.user.name %><br><br><%= @micropost.content %></h3>
       </div>
       <%= form_for(@message) do |f| %>
         <%= f.hidden_field :micropost_id %>
@@ -10,15 +12,31 @@
           <%= f.text_area :comment, rows: 5, class: "form-control" %>
         </div>
         <%= f.submit 'コメントする', class: 'btn btn-primary btn-block' %>
-        <% end %>
+      <% end %>
     </div>
   </aside>
   <div class="col-xs-8">
-    <% @messages.each do |message| %>
-      <ul>
-        <li style="list-style: none"><%= message.user.name %> : <%= message.comment %></li>
-      </ul>
-    <% end %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>コメントしたユーザー</th>
+          <th>コメント</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @messages.each do |message| %>
+          <tr>
+            <td><%= message.user.name %></td>
+            <td><%= message.comment %></td>
+            <td>
+              <% if message.user_id == current_user.id %> 
+                <%= link_to "削除", message, method: :delete, data: { confirm: "削除してよろしいですか??" }, class: 'btn btn-danger btn-xs' %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
 

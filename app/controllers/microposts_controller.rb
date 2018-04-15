@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   
   def index
     if logged_in?
@@ -17,13 +17,27 @@ class MicropostsController < ApplicationController
   end
 
   def create
-    @micropost = current_user.microposts.build(micropost_paramas)
+    @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
-      flash[:success] = 'メッセージを投稿しました'
+      flash[:success] = '投稿しました'
       redirect_to microposts_path
     else
       @microposts = current_user.feed_microposts.order('created_at DESC').page(params[:page])
       flash.now[:danger] = "投稿できませんでした"
+      render :index
+    end
+  end
+  
+  def edit
+
+  end
+  
+  def update
+    if @micropost.update(micropost_params)
+      flash[:success] = "投稿を編集しました"
+      redirect_to microposts_path
+    else
+      flash.now[:danger] = "投稿を編集できませんでした"
       render :index
     end
   end
@@ -40,7 +54,7 @@ class MicropostsController < ApplicationController
   
   private
   
-  def micropost_paramas
+  def micropost_params
     params.require(:micropost).permit(:content)
   end
   
