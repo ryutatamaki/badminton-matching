@@ -1,13 +1,13 @@
 <div class="row">
   <h1 class="text-center page-header">投稿詳細ページ</h1>
   <br>
-  <aside class="col-xs-4">
+  <aside class="col-md-4">
     <div>
       <div class="panel-heading">
         <h3 class="panel-title list-group-item text-center">投稿者: <%= @micropost.user.name %></h3>
         <h3 class="panel-title list-group-item-info list-group-item text-center"><%= @micropost.content %></h3>
       </div>
-      <% if @micropost.user.followings == @micropost.user.followers || @user.id == current_user.id %>
+      <% if current_user.following?(@user) && current_user.followers?(@user) || @user == current_user %>
         <%= form_for(@message) do |f| %>
           <%= f.hidden_field :micropost_id %>
           <div class="form-group">
@@ -16,11 +16,11 @@
             <%= f.submit 'コメントする', class: 'btn btn-primary btn-block' %>
         <% end %>
       <% else %>
-        <div class="btn btn-warning">自分の投稿と相互フォローのユーザーの投稿にのみコメントできます。</div>
+        <div class="btn btn-warning">自分の投稿と相互フォローのユーザーの投稿にのみ<br>コメントできます。</div>
       <% end %>
     </div>
   </aside>
-  <div class="col-xs-8">
+  <div class="col-md-8">
     <% if @count_comments != 0 %>
       <h3 class="text-center"><%= @count_comments %>件のコメント</h3>
       <table class="table table-striped">
