@@ -1,2 +1,13 @@
 <h1 class="text-center page-header">BadmintonMatchingユーザー一覧</h1>
+<%= search_form_for @q do |f| %>
+  <div class="row">
+    <div class="col-xs-12 text-right">
+      <%= f.label :name_cont, "ユーザー検索" %>
+      <%= f.search_field :name_cont, class: "form input-sm" %>
+      <%= f.submit "検索", class: "btn btn-default" %>
+      <%= link_to "リセット", request.path, class:"btn btn-default" %>
+    </div>
+  </div>
+<% end %>
+<hr />
 <%= render 'users', users: @users %>

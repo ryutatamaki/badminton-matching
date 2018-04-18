@@ -14,10 +14,14 @@
  *= require_tree .
  *= require_self
  */
+body {
+    background-color: #BBDED6;
+}
+
 
  
 .navbar {
-  background-color: #01DFA5;
+  background-color: #61C0BF;
   color: white;
   font-weight: bold;
 }
@@ -50,3 +54,4 @@
     border: 1px solid gray;
     border-radius: 10px;
 }
+
