@@ -14,6 +14,8 @@ class MicropostsController < ApplicationController
     @micropost = Micropost.find(params[:id])
     @message = @micropost.messages.build
     @messages = @micropost.messages.where.not(id: nil)
+    @user = @micropost.user
+    count_comments(@micropost)
   end
 
   def create
@@ -64,4 +66,6 @@ class MicropostsController < ApplicationController
       redirect_to microposts_path
     end
   end
+  
+  
 end

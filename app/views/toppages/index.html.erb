@@ -1,4 +1,5 @@
 <% if logged_in? %>
+  <h1 class="text-center well">タイムライン</h1>
   <p><%= render 'microposts/microposts', microposts: @microposts %></p>
 <% else %>
   <div class="center jumbotron">

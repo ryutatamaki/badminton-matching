@@ -19,5 +19,5 @@ Rails.application.routes.draw do
   
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
-  resources :messages, only: [:create, :destroy]
+  resources :messages, only: [:edit, :update, :create, :destroy]
 end

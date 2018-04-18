@@ -1,42 +1,54 @@
 <div class="row">
-  <h1 class="text-center">投稿詳細ページ</h1>
+  <h1 class="text-center page-header">投稿詳細ページ</h1>
   <br>
   <aside class="col-xs-4">
     <div>
       <div class="panel-heading">
-        <h3 class="panel-title text-center">投稿者: <%= @micropost.user.name %><br><br><%= @micropost.content %></h3>
+        <h3 class="panel-title list-group-item text-center">投稿者: <%= @micropost.user.name %></h3>
+        <h3 class="panel-title list-group-item-info list-group-item text-center"><%= @micropost.content %></h3>
       </div>
-      <%= form_for(@message) do |f| %>
-        <%= f.hidden_field :micropost_id %>
-        <div class="form-group">
-          <%= f.text_area :comment, rows: 5, class: "form-control" %>
-        </div>
-        <%= f.submit 'コメントする', class: 'btn btn-primary btn-block' %>
+      <% if @micropost.user.followings == @micropost.user.followers || @user.id == current_user.id %>
+        <%= form_for(@message) do |f| %>
+          <%= f.hidden_field :micropost_id %>
+          <div class="form-group">
+            <%= f.text_area :comment, rows: 5, class: "form-control" %>
+          </div>
+            <%= f.submit 'コメントする', class: 'btn btn-primary btn-block' %>
+        <% end %>
+      <% else %>
+        <div class="btn btn-warning">自分の投稿と相互フォローのユーザーの投稿にのみコメントできます。</div>
       <% end %>
     </div>
   </aside>
   <div class="col-xs-8">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>コメントしたユーザー</th>
-          <th>コメント</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @messages.each do |message| %>
+    <% if @count_comments != 0 %>
+      <h3 class="text-center"><%= @count_comments %>件のコメント</h3>
+      <table class="table table-striped">
+        <thead>
           <tr>
-            <td><%= message.user.name %></td>
-            <td><%= message.comment %></td>
-            <td>
-              <% if message.user_id == current_user.id %> 
-                <%= link_to "削除", message, method: :delete, data: { confirm: "削除してよろしいですか??" }, class: 'btn btn-danger btn-xs' %>
-              <% end %>
-            </td>
+            <th>コメントしたユーザー</th>
+            <th>コメント</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @messages.each do |message| %>
+            <tr>
+              <td><%= message.user.name %></td>
+              <td><%= message.comment %></td>
+              <td>
+                <% if message.user_id == current_user.id %> 
+                  <%= link_to "編集", edit_message_path(message), class: 'btn btn-primary btn-xs' %>
+                  <%= link_to "削除", message, method: :delete, data: { confirm: "削除してよろしいですか??" }, class: 'btn btn-danger btn-xs' %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <h3 class="text-center">この投稿に対するコメントはまだありません</h3>
+    <% end %>
+    
   </div>
 </div>
 
