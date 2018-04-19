@@ -24,8 +24,10 @@ class MessagesController < ApplicationController
       flash[:success] = "コメントを編集しました"
       redirect_to @message.micropost
     else
-      flash.now[:denger] = "編集できませんでした"
-      render 'micropost/show'
+      @micropost = @message.micropost
+      @messages = @micropost.messages.where.not(id: nil)
+      flash.now[:denger] = "コメントを編集できませんでした"
+      render 'messages/edit'
     end
   end
 

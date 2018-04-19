@@ -10,7 +10,8 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
-
+	
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
@@ -26,32 +27,10 @@ body {
   font-weight: bold;
 }
 
-/* チャットレイアウト */
-.chat-box {
-    width: 100%;
-    height: auto;
-    overflow: hidden; /*floatの解除*/
-    margin-bottom: 20px;
-}
-.chat-face {
-    float: left;
-    margin-right: -120px;
-}
-.chat-face img{
-    border-radius: 30px;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 4px #ddd;
-}
-.chat-area {
-    width: 100%;
-    float: right;
-}
-.chat-hukidashi {
-    display: inline-block; /*コメントの文字数に合わせて可変*/
-    padding: 15px 20px;
-    margin-left: 120px;
-    margin-top: 10px;
-    border: 1px solid gray;
-    border-radius: 10px;
+.like-btn {
+  color: #8899a6;
 }
 
+.like-btn-unlike {
+  color: #ff2581;
+}

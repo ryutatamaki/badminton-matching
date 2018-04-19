@@ -1,12 +1,14 @@
 <div class="row">
-  <h1 class="text-center page-header">ユーザー詳細ページ</h1>
+  <h1 class="text-center page-header">ユーザー詳細ページ</h1></i>
   <aside class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title text-center"><%= @user.name %></h3>
-        <ul class="nav nav-tabs nav-justified">
-          <li><%= link_to "フォロー", followings_user_path %></li>
-          <li><%= link_to "フォロワー", followers_user_path %></li>
+        <ul class="list-unstyled text-center">
+          <li>
+            <%= link_to "フォロー", followings_user_path %>　
+            <%= link_to "フォロワー", followers_user_path %>
+          </li>
         </ul>
       </div>
       <%= render 'relationships/follow_button', user: @user %>

@@ -1,6 +1,20 @@
 <% if logged_in? %>
-  <h1 class="text-center">タイムライン</h1>
-  <p><%= render 'microposts/microposts', microposts: @microposts %></p>
+  <h1 class="text-center page-header">ホーム</h1><br>
+  <% if @count_followings != 0 %>
+    <p><%= render 'microposts/microposts', microposts: @microposts %></p>
+  <% else %>
+    <h1 class="text-center">ユーザーをフォローすると投稿が表示されます。</h1>
+  <% end %>
+  <%= search_form_for @q do |f| %>
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <%= f.label :name_cont, "ユーザー検索" %>
+        <%= f.search_field :name_cont, class: "form input-sm" %>
+        <%= f.submit "検索", class: "btn btn-default" %>
+        <%= link_to "リセット", request.path, class:"btn btn-default" %>
+      </div>
+    </div>
+  <% end %>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">

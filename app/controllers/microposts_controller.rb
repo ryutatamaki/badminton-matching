@@ -24,9 +24,9 @@ class MicropostsController < ApplicationController
       flash[:success] = '投稿しました'
       redirect_to microposts_path
     else
-      @microposts = current_user.feed_microposts.order('created_at DESC').page(params[:page])
+      @microposts = current_user.microposts.order('created_at DESC').page(params[:page])
       flash.now[:danger] = "投稿できませんでした"
-      render :index
+      render :index 
     end
   end
   
@@ -39,6 +39,7 @@ class MicropostsController < ApplicationController
       flash[:success] = "投稿を編集しました"
       redirect_to microposts_path
     else
+      @microposts = current_user.microposts.order('created_at DESC').page(params[:page])
       flash.now[:danger] = "投稿を編集できませんでした"
       render :index
     end

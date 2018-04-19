@@ -10,9 +10,9 @@
               <%= link_to micropost.user.name, user_path(micropost.user) %> <span class="text-muted"><%= micropost.created_at %></span>
             </div>
             <div>
-              <p><%= link_to micropost.content, micropost %> <span class="badge"><%= @comments %></span></p>
+              <%= micropost.content%> <span class="badge"><%= @comments %></span>
             </div>
-            <%= render 'favorites/favorite_button', micropost: micropost %>
+            <%= link_to "コメントする", micropost %><%= render 'favorites/favorite_button', micropost: micropost %>
             <div>
               <% if current_user == micropost.user %>
                 <%= link_to "編集", edit_micropost_path(micropost), class: "btn btn-xs btn-primary" %>
