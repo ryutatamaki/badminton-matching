@@ -11,7 +11,9 @@
           </li>
         </ul>
       </div>
-      <%= render 'relationships/follow_button', user: @user %>
+      <div id="follow_button_wrapper">
+        <%= render 'relationships/follow_button', user: @user %>
+      </div>
       <div class="panel-body">
         <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
