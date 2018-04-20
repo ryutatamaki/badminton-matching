@@ -5,8 +5,8 @@ class MicropostsController < ApplicationController
   def index
     if logged_in?
       @user = current_user
-      @micropost = current_user.microposts.build
-      @microposts = current_user.microposts.order('created_at DESC').page(params[:page])
+      @micropost = @user.microposts.build
+      @microposts = @user.microposts.order('created_at DESC').page(params[:page])
     end
   end
   
@@ -53,6 +53,15 @@ class MicropostsController < ApplicationController
   
   def comments
     @micropost = Micropost.find(params[:id])
+  end
+  
+  def comment
+    @user = current_user
+    @microposts = @user.microposts.order('created_at DESC').page(params[:page])
+  end
+  
+  def post_comment
+    @microposts = Micropost.all.order('created_at DESC').page(params[:page])
   end
   
   private

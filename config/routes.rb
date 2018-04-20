@@ -15,7 +15,8 @@ Rails.application.routes.draw do
     end
   end
   
-
+  get 'comment' => 'microposts#comment'
+  get 'post_comment' => 'microposts#post_comment'
   resources :microposts
   
   resources :relationships, only: [:create, :destroy]

@@ -1,0 +1,31 @@
+<h1 class="text-center page-header ">コメントされた投稿</h1>
+
+<ul class="media-list">
+  <% @microposts.each do |micropost| %>
+    <% if micropost.comment?(micropost) %>
+        <% @comments = micropost.messages.count %>
+            <li class="media panel panel-default">
+              <div class="media-left">
+                <img class="media-object img-rounded" src="<%= gravatar_url(micropost.user, options = { size: 50 }) %>" alt="">
+              </div>
+              <div class="media-body">
+                <div>
+                  <%= link_to micropost.user.name, user_path(micropost.user) %> <span class="text-muted"><%= micropost.created_at %></span>
+                </div>
+                <div>
+                  <%= micropost.content%> <span class="badge"><%= @comments %></span>
+                </div>
+                <%= link_to "コメントする", micropost %><%= render 'favorites/favorite_button', micropost: micropost %>
+                <div>
+                  <% if current_user == micropost.user %>
+                    <%= link_to "編集", edit_micropost_path(micropost), class: "btn btn-xs btn-primary" %>
+                    <%= link_to "削除", micropost, method: :delete, data: { confirm: "削除してよろしいですか??" }, class: 'btn btn-danger btn-xs'%>
+                  <% end %>
+                </div>
+              </div>
+            </li>
+        <% end %>
+  <% end %>
+  <%= paginate @microposts %>
+</ul>
+
