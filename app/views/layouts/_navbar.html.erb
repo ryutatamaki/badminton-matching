@@ -15,6 +15,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right" >
           <% if logged_in? %>
+            <li><%= link_to '使い方', about_path%></li>
             <li><%= link_to 'ユーザー一覧', users_path%></li>
             <li><%= link_to '自分の投稿', microposts_path %></li>
             <li><%= link_to 'コメントした投稿', post_comment_path%></li>
@@ -29,7 +30,7 @@
               </ul>
             </li>
           <% else %>
-            <li><%= link_to 'サイト概要', about_path%></li>
+            <li><%= link_to '使い方', about_path%></li>
             <li><%= link_to '新規登録', signup_path %></li>
             <li><%= link_to 'ログイン', login_path %></li>
           <% end %>
